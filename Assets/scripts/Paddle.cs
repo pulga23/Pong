@@ -36,7 +36,7 @@ public class Paddle : MonoBehaviour
 
        
         float AlturaCamara = Camera.main.orthographicSize;
-        
+        /*
         // Verificar Limites com ifs 
          if (transform.position.y >= AlturaCamara - (AlturaPaddle*0.5f))
         {
@@ -50,13 +50,13 @@ public class Paddle : MonoBehaviour
              Vector3 posicaoAux = transform.position; 
              posicaoAux.y = -AlturaCamara + (AlturaPaddle * 0.5f);
              transform.position = posicaoAux;
-        }
+        } */
          
 
         //Verificar Limites com clamps
-        //Vector3 posicaoAux = transform.position;
-        //posicaoAux.y = Mathf.Clamp(posicaoAux.y, - AlturaCamara + (AlturaPaddle*0.5), AlturaCamara - (AlturaPaddle*0.5));
-        //transform.position = posicaoAux;
+        Vector3 posicaoAux = transform.position;
+        posicaoAux.y = Mathf.Clamp(posicaoAux.y, - AlturaCamara + (AlturaPaddle*0.5f), AlturaCamara - (AlturaPaddle*0.5f));
+        transform.position = posicaoAux;
 
 
 

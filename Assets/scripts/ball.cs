@@ -8,6 +8,8 @@ public class ball : MonoBehaviour
     float velocidade = 5f;
 
     bool bolaLancada = false;
+    float tempoinicial = 0f;
+    float temporelancar = 0f;
     float tempo = 0f;
 
     float larguracamera;
@@ -37,11 +39,17 @@ public class ball : MonoBehaviour
         
        if (bolaLancada == false)
        {
+            GetComponent<Rigidbody2D>().velocity = velocidade * Vector2.zero;
+            transform.position = 0f * Vector3.forward;
             tempo += Time.deltaTime;
-            if(tempo >= 2f)
+            if(tempo>= 2f)
             {
                 bolaLancada = true;
-                Lancarbola();
+                GetComponent<Rigidbody2D>().velocity = velocidade * Random.insideUnitCircle; //bola lançada com uma direção aleatoria 
+                Debug.Log("A pontuação é:");
+                Debug.Log("Jodador 1- " + pontosesquerda + "-" + pontosdireita + " -Jogador 2");
+                tempo = 0f;
+
             } 
        }
 
@@ -49,23 +57,34 @@ public class ball : MonoBehaviour
        if (transform.position.x >= larguracamera)
        {
             pontosesquerda += 1;
-            Lancarbola();
+            bolaLancada = false;
        }
        else if (transform.position.x <= -larguracamera)
        {
             pontosdireita += 1;
-            Lancarbola();
+            bolaLancada = false;
        }
 
         
 
     }
     //Laçamento da bola
-    void Lancarbola()
+    /*void Lancarbola()
     {
-        transform.position = 0f * Vector3.forward;
-        GetComponent<Rigidbody2D>().velocity = velocidade * Random.insideUnitCircle;
-        Debug.Log("A pontuação é:");
-        Debug.Log("Jodador 1- " + pontosesquerda + "-" + pontosdireita + " -Jogador 2");
-    }
+        GetComponent<Rigidbody2D>().velocity = velocidade * Vector2.zero;
+        transform.position = 0f * Vector3.forward; //bola volta a posição inicial
+      
+        
+            temporelancar += Time.deltaTime;
+        
+      
+        
+            transform.position = 0f * Vector3.forward; //bola volta a posição inicial
+            GetComponent<Rigidbody2D>().velocity = velocidade * Random.insideUnitCircle; //bola lançada com uma direção aleatoria 
+            Debug.Log("A pontuação é:");
+            Debug.Log("Jodador 1- " + pontosesquerda + "-" + pontosdireita + " -Jogador 2");
+            temporelancar = 0f;
+        
+        
+    }*/
 }
